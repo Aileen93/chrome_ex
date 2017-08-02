@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style style="text/css">
+		BODY {
+			width : 525px; 
+			min-height:250px;
+			font-size:9pt;
+			font-family:고딕;
+		}
+		UL{
+			list-style-type: none;
+		}
+		#p_header {
+			padding: 5px;
+		}
+		#contents ul ul {
+			list-style: none;
+			display:block;
+			padding: 0;
+			margin-top: 5px;
+		}
+		
+	</style>
+</head>
+<body style="">
+<form class="form-inline">
+	
+	<!-- header : input-group-sm -->
+	<div id="p_header" class="input-group">
+		<div id="" class="input-group-addon">검색</div>
+		<input type="text" id="search" name="search" class="form-control" placeholder="쿠키명을 검색해주세요." value="" style="min-width:300px;" style="ime-mode:disabled"  />
+		<div id="" class="input-group-btn">
+			<button type="button" id="f_refresh" class="btn btn-default" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-refresh"></span></button>
+			<button type="button" id="f_delete" class="btn btn-default" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-trash"></span></button>
+			<button type="button" id="f_conf" class="btn btn-default" aria-haspopup="true" aria-expanded="false" disabled><span class="glyphicon glyphicon-cog"></span></button>
+			<button type="button" id="f_question" name="f_question" class="btn btn-default" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-question-sign"></span></button>
+		</div>
+	</div>
+
+	<!-- body -->
+	<div id="contents" style="overflow:scroll; height:400px; margin-top:10px;">
+	
+		<ul id="cookie_list" class="list-group nav" style="margin-bottom:0px;font-size:12pt;">
+			<li id="" class="asdf" style="padding-left:23px; background:#9DE4FF; border:1px solid #E1F6FA">
+				<span id="SFN" name="SFN">▼ SFN (nate.com)</span>
+			<li>
+			<li id="" style="display:block;">
+				<div id="" name="" class="input-group-sm" style="padding-left:23px;">
+					<textarea id="SFN" name="SFN" class="form-control" style="width:95%; height:100px; margin-bottom:5px; margin-top:10px;" onload="setCookie();">cj=&nick=&cpinfo=86d79930f59bdc981f8459d78c4dde45d3dba5e839506c8a41d6107a412a2bd34e94f0b55da359638cde8015c3ba75e8</textarea>
+
+					<div class="input-group input-group-sm" style="width:95%;">
+						<div id="" class="input-group-addon" style="background:white;">만료일</div>
+						<input type="text" id="expire_dt" name="expire_dt" class="form-control" value="11111" disabled="true" readonly/>
+						<div id="" class="input-group-btn">
+							<button type="button" id="f_save" class="btn btn-default" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+							<button type="button" id="f_delete" class="btn btn-default" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-trash"></span></button>
+						</div>
+					</div>
+				</div></br>
+			</li>
+
+
+			<li id="" class="asdf" style="padding-left:23px; background:#EBFBFF; border:1px solid #E1F6FA">
+				<span id="SFN" name="SFN">▼ SFN (nate.com)</span>
+			<li>
+			<li id="" style="display:none;">
+				<div id="" name="" style="padding-left:23px;">
+					<textarea id="SFN" name="SFN" class="form-control" style="width:95%; height:100px; margin-bottom:5px; margin-top:10px;" onload="setCookie();">cj=&nick=&cpinfo=86d79930f59bdc981f8459d78c4dde45d3dba5e839506c8a41d6107a412a2bd34e94f0b55da359638cde8015c3ba75e8</textarea>
+
+					<div class="input-group input-group-sm" style="width:95%;">
+						<div id="" class="input-group-addon" style="background:white;">만료일</div>
+						<input type="text" id="expire_dt" name="expire_dt" class="form-control" value="11111" disabled="true" readonly/>
+						<div id="" class="input-group-btn">
+							<button type="button" id="f_save" class="btn btn-default" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+							<button type="button" id="f_delete" class="btn btn-default" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-trash"></span></button>
+						</div>
+					</div>
+				</div></br>
+			</li>
+
+
+			<li id="" class="asdf" style="padding-left:23px; background:#EBFBFF; border:1px solid #E1F6FA">
+				<span id="SFN" name="SFN">▼ SFN (nate.com)</span>
+			<li>
+			<li id="" style="display:none;">
+				<div id="" name="" style="padding-left:23px;">
+					<textarea id="SFN" name="SFN" class="form-control" style="width:95%; height:100px; margin-bottom:5px; margin-top:10px;" onload="setCookie();">cj=&nick=&cpinfo=86d79930f59bdc981f8459d78c4dde45d3dba5e839506c8a41d6107a412a2bd34e94f0b55da359638cde8015c3ba75e8</textarea>
+
+					<div class="input-group input-group-sm" style="width:95%;">
+						<div id="" class="input-group-addon" style="background:white;">만료일</div>
+						<input type="text" id="expire_dt" name="expire_dt" class="form-control" value="11111" disabled="true" readonly/>
+						<div id="" class="input-group-btn">
+							<button type="button" id="f_save" class="btn btn-default" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+							<button type="button" id="f_delete" class="btn btn-default" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-trash"></span></button>
+						</div>
+					</div>
+				</div></br>
+			</li>
+		</ul>
+	
+		<!-- footer -->
+		<div id="footer" style="font-size:8pt; display:block; font-size:9pt; background:#whtie;">
+		
+			<!-- ad -->
+			<div id="ad_area" class="alert" role="alert" style="margin-bottom:10px;height:40px;">
+				<a id="ad" href="http://www.nate.com/?f=autorefresh" target="_blank"></a>
+			</div>
+		
+			<!-- info -->
+			<p class="text-center">
+				문의사항 <a>mjk2072@nate.com</a>
+			</p></br>
+		</div>
+	</div>
+</form>
+</body>
+</html>
+
+<script type="text/javascript" src="/js/popup.js" charset='euc-kr'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
