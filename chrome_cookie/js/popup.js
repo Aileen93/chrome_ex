@@ -1,95 +1,55 @@
-var Cookie =
-{
-    cookie_arr : null,
- 
-    set : function (name,value,options)
-    {
-        options = options || {};
- 
-        this.cookie_arr = [escape(name) + '=' + escape(value)];
- 
-        //-- expires
-        if (options.expires)
-        {
-            if( typeof options.expires === 'object' && options.expires instanceof Date )
-            {
-                var date = options.expires;
-                var expires = "expires=" + date.toUTCString();
-                this.cookie_arr.push (expires);
-            }
-        }
-        else if (options.expires_day)
-        {
-            this.set_expires_date (options.expires_day , 24*60*60);
-        }
-        else if (options.expires_hour)
-        {
-            this.set_expires_date (options.expires_hour , 60*60);
-        }
- 
-        //-- domain
-        if (options.domain)
-        {
-            var domain = "domain=" + options.domain;
-            this.cookie_arr.push (domain);
-        }
- 
-        //-- path
-        if (options.path)
-        {
-            var path = 'path=' + options.path;
-            this.cookie_arr.push (path);
-        }
- 
-        //-- secure
-        if( options.secure === true )
-        {
-            var secure = 'secure';
-            this.cookie_arr.push (secure);
-        }
- 
-        document.cookie = this.cookie_arr.join('; ');
-        //console.log (this.cookie_arr.join('; '));
-    },
- 
-    get : function (name)
-    {
-        var nameEQ = escape(name) + "=";
-        var ca = document.cookie.split(';');
- 
-        for(var i=0;i < ca.length;i++)
-        {
-            var c = ca[i];
-            while (c.charAt(0)==' ') c = c.substring(1,c.length);
-            if (c.indexOf(nameEQ) == 0) return unescape(c.substring(nameEQ.length,c.length));
-        }
-        return null;
-    },
- 
-    del : function (name , options)
-    {
-        options = options || {};
-        options.expires_day = -1;
-        this.set ( name , '' , options );
-    },
- 
-    set_expires_date : function (expires , time)
-    {
-        var date = new Date();
-        date.setTime(date.getTime()+(expires*time*1000));
-        var expires = "expires=" + date.toUTCString();
-        this.cookie_arr.push (expires);
-    }
-};
-
-
-function getCookie(cname){
-	document.getElementById('cookie_list').innerHTML="이순신";
+function getCookie(cname){   
+    
+    // clear
+    // $('#c_contents').empty();
+    
+    // getCookie 
+    
+    // setCookieInfo
+    var cDomain = "naver.com";
+    var cName = "ENC";
+    var cTitle = "▶ "+cName+" ("+cDomain+")";
+    var cValue = "cj=&nick=&cpinfo=86d79930f59bdc981f8459d78c4dde45d3dba5e839506c8a41d6107a412a2bd34e94f0b55da359638cde8015c3ba75e8";
+    var cExpire_dt = "2017-08-03 17:33:01";
+    
+    // common info
+    var nColor = "EBFBFF";
+    var sColor = "9DE4FF";
+    
+    var nTitle = cTitle;
+    var sTitle = "<strong>"+cTitle+"</strong>";
+    
+    // cookieInfo innerHtml
+    var innerHtmlForm = 
+    "<li id=\"\" class=\"asdf\" style=\"padding-left:10px; background:#"+nColor+"; border:1px solid #E1F6FA\">"
+    +    "<span id=\""+cName+"\" name=\""+cName+"\">"+nTitle+"</span>"
+    +"<li>"
+    +"<li id=\"\" style=\"display:none;\">"
+    +   "<div id=\"\" name=\"\" class=\"input-group-sm\" style=\"padding-left:23px;\">"
+    +       "<textarea id=\""+cName+"\" name=\"SFN\" class=\"form-control\" style=\"width:95%; height:100px; margin-bottom:5px; margin-top:10px;\" onload=\"setCookie();\">"+cValue+"</textarea>"
+    +       "<div class=\"input-group input-group-sm\" style=\"width:95%;\">"
+    +           "<div id=\"\" class=\"input-group-addon\" style=\"background:white;\">만료일</div>"
+    +           "<input type=\"text\" id=\"expire_dt\" name=\"expire_dt\" class=\"form-control\" value=\""+cExpire_dt+"\" disabled=\"true\" readonly/>"
+    +           "<div id=\"\" class=\"input-group-btn\">"
+    +               "<button type=\"button\" id=\"f_save\" class=\"btn btn-default\" aria-haspopup=\"true\" aria-expanded=\"false\"><span class=\"glyphicon glyphicon-floppy-disk\"></span></button>"
+    +               "<button type=\"button\" id=\"f_delete\" class=\"btn btn-default\" aria-haspopup=\"true\" aria-expanded=\"false\"><span class=\"glyphicon glyphicon-trash\"></span></button>"
+    +           "</div>"
+    +       "</div>"
+    +   "</div></br>"
+    +"</li>";
+    
+    document.getElementById("c_contents").innerHTML += innerHtmlForm;
+    // document.getElementById("c_contents").appendChild(innerHtmlForm);
 }
 
-// search
+// f_search
 document.getElementById("search").addEventListener("keyup", search);
-function search(event){
+function f_search(event){
+    
+    // 1. 이전에 선택된 모든 쿠키 값 닫기 display:block;
+    
+    
+    // 2. 현재 쿠키이름과 동일한 쿠키 title 잡아서 display:none; 처리
 	
 // 	var n_input = String.fromCharCode(event.keyCode).toLowerCase();
 	var o_input = document.getElementById('search').value;
@@ -97,8 +57,7 @@ function search(event){
 	var cName = o_input+'=';
 	if(cName != ''){
 		var cookie = document.cookie;
-		var startIndexOf = cookie.indexOf('SFN=');
-		alert(startIndexOf);
+		var startIndexOf = cookie.indexOf(cName);
 
 		var cValue = '';
 		if(startIndexOf != -1){
@@ -106,8 +65,14 @@ function search(event){
 			var endIndexOf = cookieData.indexOf(';', startIndexOf);
 			if(endIndexOf == -1)endIndexOf = cookieData.length;
 			cValue = cookieData.substring(startIndexOf, endIndexOf);
+            
+            // 동일한 쿠키 이름만 none;
+            
+            // 그외는 모두 block; 처리
 		}
 	}
+    
+    
 	
 	document.getElementById('search').focus();
 }
@@ -115,26 +80,27 @@ function search(event){
 // f_refresh
 document.getElementById("f_refresh").addEventListener("click", f_refresh);
 function f_refresh(){
-	getCookie();
+	
+    getCookie();
 }
 
 // f_delete
 document.getElementById("f_delete").addEventListener("click", f_delete);
-function f_delete(val){
-	alert('쓰레기쓰레기');
+function f_delete(cookieName){
 
 	var expireDate = new Date();
-	if(val.length == 0){  
-		//어제 날짜를 쿠키 소멸 날짜로 설정한다.
+	if(cookieName.length > 0){
+		// 쿠키 이름이 넘어올 경우 해당 쿠키만 삭제
 		expireDate.setDate( expireDate.getDate() - 1 );
 		document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString() + "; path=/";
-
-	}else{  
-
-		//어제 날짜를 쿠키 소멸 날짜로 설정한다.
+        alert(cookieName+' 쿠키가 정상적으로 삭제 되었습니다.');
+        f_refresh();
+	}else{
+		// 그외는 모두 삭제한다.
 		expireDate.setDate( expireDate.getDate() - 1 );
 		document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString() + "; path=/";
-
+        alert('전체 쿠키가 삭제되었습니다.');
+        f_refresh();
 	}
 }
 
